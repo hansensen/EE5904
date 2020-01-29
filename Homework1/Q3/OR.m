@@ -43,5 +43,4 @@ hold on;
 plot(x, [w_b_init(2), w_hist(2,:)], '*-');
 hold on;
 plot(x, [w_b_init(3), w_hist(3,:)], '+-');
-% axis([0, iteration+1, -10, 10]);
 hold off;

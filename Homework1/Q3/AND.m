@@ -30,8 +30,6 @@ for i = 1: n
         plot(x(1,i), x(2,i), 'o');
     end
 end
-% plot(x(1,1:3), x(2,1:3), '*');
-% plot(x(1,4), x(2,4), 'o');
 
 x = xmin:0.01:xmax;
 y = -1 * x * w_b(2) / w_b(3) - w_b(1) / w_b(3);
@@ -45,5 +43,4 @@ hold on;
 plot(x, [w_b_init(2), w_hist(2,:)], '*-');
 hold on;
 plot(x, [w_b_init(3), w_hist(3,:)], '+-');
-% axis([0, iteration+1, -10, 10]);
 hold off;

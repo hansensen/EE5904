@@ -9,7 +9,6 @@ w_b_init = [rand, rand, rand];
 % 2. Get w and b
 [w_b, w_hist] = percep(w_b_init, x, d, lr, iteration);
 
-
 % 3. Plot the graph
 figure;
 xmin = -0.5;
@@ -42,5 +41,4 @@ hold on;
 plot(x, [w_b_init(2), w_hist(2,:)], '*-');
 hold on;
 plot(x, [w_b_init(3), w_hist(3,:)], '+-');
-% axis([0, iteration+1, -10, 10]);
 hold off;
