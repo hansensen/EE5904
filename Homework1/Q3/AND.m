@@ -10,6 +10,7 @@ w_b_init = [rand, rand, rand];
 % 2. Get w and b
 [w_b, w_hist] = percep(w_b_init, x, d, lr, iteration);
 
+
 % 3. Plot the graph
 figure;
 xmin = -0.5;
@@ -17,11 +18,20 @@ xmax = 3;
 ymin = -0.5;
 ymax = 3;
 subplot(2,1,1);
-plot(x(1,1:3), x(2,1:3), '*');
+
 axis([xmin, xmax, ymin, ymax]);
 grid on;
 hold on;
-plot(x(1,4), x(2,4), 'o');
+[~, n] = size(d)
+for i = 1: n
+    if d(i) == 1
+        plot(x(1,i), x(2,i), '*');
+    else
+        plot(x(1,i), x(2,i), 'o');
+    end
+end
+% plot(x(1,1:3), x(2,1:3), '*');
+% plot(x(1,4), x(2,4), 'o');
 
 x = xmin:0.01:xmax;
 y = -1 * x * w_b(2) / w_b(3) - w_b(1) / w_b(3);

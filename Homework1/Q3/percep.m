@@ -1,12 +1,11 @@
-function [w_b, w_hist] = percep(w_b, x, d, lr, iteration)
+function [w_b, w_hist] = percep(w_b_init, x, d, lr, iteration)
 %PERCEP Summary of this function goes here
 %   Detailed explanation goes here
-
-    x = [ones(1, 4); x];
-    size(x)
+    [n, m] = size(x)
+    x = [ones(1, m); x];
     [len, ~] = size(x);
     w_hist = zeros([len, iteration]);
-    size(w_hist)
+    w_b = w_b_init;
     for i = 1: iteration
         v = w_b * x;
         y = hardlim(v);
