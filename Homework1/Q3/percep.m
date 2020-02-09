@@ -7,8 +7,8 @@ function [w_b, w_hist] = percep(w_b_init, x, d, lr, iteration)
     w_hist = zeros([len, iteration]);
     w_b = w_b_init;
     for i = 1: iteration
-        v = w_b * x
-        y = ones(1, length(v))
+        v = w_b * x;
+        y = ones(1, length(v));
         for j = 1: length(v)
             if (v(j) < 0)
                 y(j) = 0;

@@ -22,7 +22,7 @@ subplot(2,1,1);
 axis([xmin, xmax, ymin, ymax]);
 grid on;
 hold on;
-[~, n] = size(d)
+[~, n] = size(d);
 for i = 1: n
     if d(i) == 1
         plot(x(1,i), x(2,i), '*');
