@@ -1,11 +1,11 @@
-%% OR
+%% AND
 clear;
 clc;
 
 % 1. Init
-lr = 1.0;
+lr = 0.1;
 x = [0, 0, 1, 1; 0 ,1 ,0 ,1];
-d = [0, 1, 1, 1];
+d = [0, 1, 1, 0];
 iteration = 20;
 w_b_init = [rand, rand, rand];
 
@@ -24,7 +24,7 @@ subplot(2,1,1);
 axis([xmin, xmax, ymin, ymax]);
 grid on;
 hold on;
-[~, n] = size(d)
+[~, n] = size(d);
 for i = 1: n
     if d(i) == 1
         plot(x(1,i), x(2,i), '*');
@@ -35,7 +35,7 @@ end
 
 x = xmin:0.01:xmax;
 y = -1 * x * w_b(2) / w_b(3) - w_b(1) / w_b(3);
-str = sprintf('OR Decision Boundary');
+str = sprintf('XOR Decision Boundary');
 title(str);
 plot(x, y);
 dim = [.5 .5 .3 .3];

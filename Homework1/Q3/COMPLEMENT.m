@@ -1,4 +1,6 @@
 %% COMPLEMENT
+clear;
+clc;
 
 % 1. Init
 lr = 1.0;
@@ -9,7 +11,6 @@ w_b_init = [rand, rand];
 
 % 2. Get w and b
 [w_b, w_hist] = percep(w_b_init, x, d, lr, iteration);
-
 
 % 3. Plot the graph
 figure;
@@ -30,13 +31,19 @@ for i = 1: n
         plot(x(i), 0, 'o');
     end
 end
-x = xmin:0.01:xmax;
-y = x * w_b(2) + w_b(1);
-plot(x, y);
 
+xline(w_b(1),'-',{'Decision Boundary'});
+str = sprintf('COMPLEMENT: x=%.2f', w_b(1));
+title(str);
+dim = [.5 .5 .3 .3];
+str1 = sprintf('Initial Weights: [%.2f, %.2f]', w_b_init(1), w_b_init(2));
+str2 = sprintf('Final Weights: [%.2f, %.2f]', w_b(1), w_b(2));
+str = [str1 newline str2];
+annotation('textbox',dim,'String', str,'FitBoxToText','on');
 
 subplot(2,1,2);
 x = 0:iteration;
+title('Trajectory of weights');
 plot(x, [w_b_init(1), w_hist(1,:)], 'o-');
 grid on;
 hold on;

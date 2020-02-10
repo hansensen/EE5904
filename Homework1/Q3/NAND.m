@@ -1,4 +1,7 @@
 %% NAND
+clear;
+clc;
+
 % 1. Init
 lr = 1.0;
 x = [0, 0, 1, 1; 0 ,1 ,0 ,1];
@@ -31,10 +34,18 @@ end
 
 x = xmin:0.01:xmax;
 y = -1 * x * w_b(2) / w_b(3) - w_b(1) / w_b(3);
+str = sprintf('NAND Decision Boundary');
+title(str);
 plot(x, y);
+dim = [.5 .5 .3 .3];
+str1 = sprintf('Initial Weights: [%.2f, %.2f, %.2f]', w_b_init(1), w_b_init(2), w_b_init(3));
+str2 = sprintf('Final Weights: [%.2f, %.2f, %.2f]', w_b(1), w_b(2), w_b(3));
+str = [str1 newline str2];
+annotation('textbox',dim,'String', str,'FitBoxToText','on');
 
 subplot(2,1,2);
 x = 0:iteration;
+title('Trajectory of weights');
 plot(x, [w_b_init(1), w_hist(1,:)], 'o-');
 grid on;
 hold on;
