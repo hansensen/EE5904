@@ -3,3 +3,5 @@
 *.pdf
 .ipynb_checkpoints/
 *.png
+*.m~
+group_1/

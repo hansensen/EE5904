@@ -100,7 +100,6 @@ semilogy(f(:))
 xlabel('Iterations')
 ylabel('Function Value (log scale)')
 
-
 dim = [0.2 0.6 0.3 0.3];
 annotation('textbox',dim,'String', str,'FitBoxToText','on');
 

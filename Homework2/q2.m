@@ -13,7 +13,7 @@ yout = fn(xout);
 lst_hidden_neurons = [1:10 20 50 100];
 lr=0.00001;
 
-%% a)
+%% a) Sequential Mode
 epochs = 1000;
 for n = lst_hidden_neurons
     net = train_seq(n, xtrain, ytrain, epochs);
@@ -41,7 +41,7 @@ for n = lst_hidden_neurons
     title(str)
     xlim([-3 3])
 
-    str = sprintf('Q2-a-%d.png', n);
+    str = sprintf('./plots/Q2-a-%d.png', n);
     saveas(gcf, str);
 end
 
@@ -74,7 +74,7 @@ for n = lst_hidden_neurons
     title(str)
     xlim([-3 3])
 
-    str = sprintf('Q2-b-%d.png', n);
+    str = sprintf('./plots/Q2-b-%d.png', n);
     saveas(gcf, str);
 end
 
@@ -106,7 +106,7 @@ for n = lst_hidden_neurons
     title(str)
     xlim([-3 3])
 
-    str = sprintf('Q2-c-%d.png', n);
+    str = sprintf('./plots/Q2-c-%d.png', n);
     saveas(gcf, str);
 end
 
