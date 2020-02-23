@@ -4,10 +4,10 @@
 clc;
 clear;
 
-lr = 0.001;
-threshold = 1e-4;
-epoch_limit = 10000;
+lr = 0.2;
+epoch_limit = 100000;
 w_init = rand(1, 2) * 0.5;
+threshold = 1e-20;
 
 %% a). Use Gradient Descent Method
 
@@ -15,33 +15,53 @@ w = zeros(epoch_limit,2);
 w(1,:) = w_init;
 f = zeros(epoch_limit,1);
 
-for epoch=1:epoch_limit-1
-    f(epoch,1) = rv_fn(w(epoch,1), w(epoch,2));
+for epoch=1:epoch_limit
+    f(epoch) = rv_fn(w(epoch,1), w(epoch,2));
     % calculate delta_w
     delta_w = gradient_descent(w(epoch,1), w(epoch,2), lr);
     % update w
     w(epoch+1,:) = w(epoch,:)+delta_w;
+    if epoch > 1
+        if (abs(f(epoch) - f(epoch-1)) < threshold)
+            break;
+        end
+    end
 end
 
-% Plot
-fprintf("The training ends at %f epoch\n", epoch);
-fprintf("The solution is x:%f & y:%f with f of %f\n", ...
-    [w(epoch,1),w(epoch,2),f(epoch,1)]);
+set(gcf, 'Position',  [100, 200, 600, 600*1.414])
+% Plot the graph
+str1 = sprintf("Gradient Descent (lr=%f):", lr);
+str2 = sprintf("Threshold: %.0d", threshold);
+str3 = sprintf("Epochs: [%d/%d]", epoch, epoch_limit);
+str4 = sprintf("x=%f, y=%f, f(x,y)=:%.0d", w(epoch,1),w(epoch,2),f(epoch,1));
+str = [str1 str2 str3 str4];
 
-clf;
 subplot(2,1,1)
-plot(w(:,1), w(:,2))
-xlabel('X')
-ylabel('Y')
-title(["Gradient Descent", "Training with lr:", num2str(lr)])
+plot(w(1:epoch,1), w(1:epoch,2))
+xlabel('x');
+ylabel('y');
+title(["a). Gradient Descent", "Trajectory Graph"])
 
 subplot(2,1,2)
 semilogy(f(:))
 xlabel('Iterations')
-ylabel('Function Value (log)')
-ylim([0 100])
+ylabel('Function Value (log scale)')
+
+
+dim = [0.2 0.6 0.3 0.3];
+annotation('textbox',dim,'String', str,'FitBoxToText','on');
+
 
 %% b). Use Newton's method
+%% Initialization
+
+clc;
+clear;
+
+lr = 0.001;
+epoch_limit = 1000;
+w_init = rand(1, 2) * 0.5;
+threshold = 1e-20;
 
 w = zeros(epoch_limit,2);
 w(1,:) = w_init;
@@ -53,25 +73,36 @@ for epoch=1:epoch_limit-1
     delta_w = newtons_method(w(epoch,1), w(epoch,2), lr);
     % update w
     w(epoch+1,:) = w(epoch,:)+delta_w;
+    if epoch > 1
+        if (abs(f(epoch) - f(epoch-1)) < threshold)
+            break;
+        end
+    end
 end
 
-% Plot
-fprintf("The training ends at %f epoch\n", epoch);
-fprintf("The solution is x:%f & y:%f with f of %f\n", ...
-    [w(epoch,1),w(epoch,2),f(epoch,1)]);
 
-clf;
+set(gcf, 'Position',  [100, 200, 600, 600*1.414])
+% Plot the graph
+str1 = sprintf("Newton's method (lr=%f):", lr);
+str2 = sprintf("Threshold: %.0d", threshold);
+str3 = sprintf("Epochs: [%d/%d]", epoch, epoch_limit);
+str4 = sprintf("x=%f, y=%f, f(x,y)=:%.0d", w(epoch,1),w(epoch,2),f(epoch,1));
+str = [str1 str2 str3 str4];
+
 subplot(2,1,1)
-plot(w(:,1), w(:,2))
-xlabel('X')
-ylabel('Y')
-title(["Newton's Method", "Training with lr:", num2str(lr)])
+plot(w(1:epoch,1), w(1:epoch,2))
+xlabel('x');
+ylabel('y');
+title(["b). Newton's method", "Trajectory Graph"])
 
 subplot(2,1,2)
 semilogy(f(:))
 xlabel('Iterations')
-ylabel('Function Value (log)')
-ylim([0 100])
+ylabel('Function Value (log scale)')
+
+
+dim = [0.2 0.6 0.3 0.3];
+annotation('textbox',dim,'String', str,'FitBoxToText','on');
 
 %% Define functions
 
