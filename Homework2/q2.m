@@ -139,9 +139,6 @@ function net = train_batch(n, x, y, epochs, lr, trainFcn)
     net.trainparam.lr = lr;
     net.trainparam.epochs=epochs;
     net.trainparam.goal=1e-10;
-    net.divideParam.trainRatio = trainRatio;
-    net.divideParam.valRatio = 1-trainRatio;
-    net.divideParam.testRatio = 0;
     
     net = train(net, x, y);
 end
