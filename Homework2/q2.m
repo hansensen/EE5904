@@ -42,7 +42,7 @@ for n = lst_hidden_neurons
     xlim([-3 3])
 
     str = sprintf('./plots/Q2-a-%d.png', n);
-    saveas(gcf, str);
+    %saveas(gcf, str);
 end
 
 
@@ -129,8 +129,6 @@ function net = train_seq(n, x, y, epochs)
 end
 
 function net = train_batch(n, x, y, epochs, lr, trainFcn)
-    trainRatio = 1;
-
     net = feedforwardnet(n, trainFcn);
     net.layers{1}.transferFcn = 'tansig';
     net.layers{2}.transferFcn = 'purelin';

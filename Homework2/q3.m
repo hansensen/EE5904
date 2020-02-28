@@ -10,7 +10,6 @@ train_path = append(path, '/train/');
 val_path = append(path, '/val/');
 
 %% a) Rosenblatt's Perceptron
-
 [xtrain, ytrain] = load_data(train_path, 1, false);
 [xval, yval] = load_data(val_path, 1, false);
 

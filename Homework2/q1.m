@@ -132,7 +132,7 @@ function delta_w = gradient_descent(x, y, lr)
     delta_w = -lr*g';
 end
 
-function delta_w = newtons_method(x, y, lr)
+function delta_w = newtons_method(x, y)
     % calculate gradient
     g = rv_g(x,y);
     % calculate Hessian
