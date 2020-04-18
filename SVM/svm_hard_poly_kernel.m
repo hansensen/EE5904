@@ -32,10 +32,7 @@ for i = 1:length(p)
 
     % calculate alpha
     alpha = get_alpha(x_train_norm, y_train, C, K);
-    sv_idx = find(alpha > threshold);% find support vector
-    sv = x_train_norm(:,sv_idx);
-    tmp =sum(alpha .*y_train .* K(:,sv_idx), 1);
-    b0 = mean(y_train(sv_idx) - tmp');
+    b0 = svm(K, y_train, alpha, threshold);
 
     % calculate accuracy
     y_pred_train = (sum((alpha .* y_train).*K)+b0)';
