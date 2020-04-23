@@ -1,4 +1,4 @@
-%% (i) A hard-margin SVM with the linear kernel
+%% A hard-margin SVM with the polynomial kernel
 
 % clc; 
 clear;
@@ -24,10 +24,15 @@ x_test_norm = (x_test-repmat(mea,1,sz_ts))./repmat(sd',1,sz_ts);
 C = 10^6;
 threshold = 10^(-4);
 p = [2, 3, 4, 5];
+eig_vales = ones(sz_tr,4);
 
 for i = 1:length(p)
     % polynomial kernel
     K = (x_train_norm' * x_train_norm + 1).^p(i);
+    % Check Mercer's Condition
+    eigen_value = eig(K);
+    eigen_value(:,i) = eigen_value;
+
     K_test = (x_train_norm' * x_test_norm + 1).^p(i);
 
     % calculate alpha

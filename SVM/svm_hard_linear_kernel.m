@@ -21,9 +21,9 @@ test_dim = size(test_data);
 sz_ts = test_dim(2);
 x_test = (test_data - repmat(mu,1,sz_ts))./repmat(s,1,sz_ts);
 y_test = test_label;
-
 % linear kernel
 K = x_train' * x_train; % xi*xj
+eigenvalues = eig(K);
 
 %% Calculate alpha
 alpha = get_alpha(x_train, y_train, C, K);
