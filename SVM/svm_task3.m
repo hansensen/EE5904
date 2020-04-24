@@ -3,10 +3,10 @@
 clear;
 %% Load data and initialization
 train = load('train.mat');
-eval = load('test.mat');
+eval = load('eval.mat');
 x_train = train.train_data;
 y_train = train.train_label;
-x_eavl = eval.test_data;
+x_eavl = eval.eval_data;
 
 % Preprocessing data
 mea = mean(x_train, 2);
